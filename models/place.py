@@ -4,7 +4,6 @@ Place class, a subclass of BaseModel class
 """
 from models.base_model import BaseModel
 
-
 class Place(BaseModel):
     """
     A subclass of BaseModel class

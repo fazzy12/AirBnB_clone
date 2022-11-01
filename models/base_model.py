@@ -7,7 +7,6 @@ import models
 Parent class to all classes in the AirBnB clone project
 """
 
-
 class BaseModel():
     """Parent class for AirBnB clone project
     Methods:
