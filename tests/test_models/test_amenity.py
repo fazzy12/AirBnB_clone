@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines unittests for models/amenity.py.
+
 Unittest classes:
     TestAmenity_instantiation
     TestAmenity_save
@@ -187,4 +188,3 @@ class TestAmenity_to_dict(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
