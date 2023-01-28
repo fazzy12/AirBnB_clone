@@ -100,4 +100,4 @@ $
 # Authors:
 ​
  * Ifeanyi Kalu [Github](https://github.com/fazzy12)
- * Ekene Odibe [Github](https://github.com/drignet)
+ * Ekene Odibe  [Github](https://github.com/drignet)

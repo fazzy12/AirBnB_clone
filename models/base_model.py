@@ -6,10 +6,21 @@ A module that implements the BaseModel class
 from uuid import uuid4
 from datetime import datetime
 
+<<<<<<< HEAD
 
 class BaseModel:
     """
     A class that defines all common attributes/methods for other classes
+=======
+class BaseModel():
+    """Parent class for AirBnB clone project
+    Methods:
+        __init__(self, *args, **kwargs)
+        __str__(self)
+        __save(self)
+        __repr__(self)
+        to_dict(self)
+>>>>>>> ae775190987e8f416ac66cedc044d9eb8d683653
     """
 
     def __init__(self, *args, **kwargs):
