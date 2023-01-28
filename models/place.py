@@ -2,6 +2,7 @@
 """Contains the Place model"""
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """
     Implements the Place model
