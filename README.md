@@ -3,7 +3,6 @@
     <img src="image1.jpg" alt="Image 1" width="400" height="300" />
     <img src="image2.jpg" alt="Image 2" width="400" height="300" />
 </div>
-
 # AirBnB Clone
 ## Welcome to the AirBnB Clone project! 
 
