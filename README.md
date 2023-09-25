@@ -1,103 +1,102 @@
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="image1.jpg" alt="Image 1" width="400" height="300" />
+    <img src="image2.jpg" alt="Image 2" width="400" height="300" />
+</div>
+
 # AirBnB Clone
-<!-- <p align="center">
-  <img src="https://github.com/essien1990/AirBnB_clone/hbnb_logo.png" alt="AirBnB-clone logo">
-</p> -->
-​
-## Description of the project
-The goal of the project is to deploy a replica of the [Airbnb Website](https://www.airbnb.com/). The final version of this project will have:
-- A command interpreter to manipulate data without a visual interface, like a shell (for development and debugging)
-- A website (front-end) with static and dynamic functionalities
-- A comprehensive database to manage the backend functionalities
-- An API that provides a communication interface between the front and backend of the system.
-​
-### General concepts in review
-As you navigate this code base, it is great to note the following concepts, while completing this project.
-- How to create a Python package
-- How to create a command interpreter in Python using the cmd module
-- What is Unit testing and how to implement it in a large project
-- How to serialize and deserialize a Class
-- How to write and read a JSON file
-- How to manage datetime
-- What is an UUID
-- What is *args and how to use it
-- What is **kwargs and how to use it
-- How to handle named arguments in a function
-​
-## Files and Directories
-- ```models``` directory will contain all classes used for the entire project. A class, called “model” in a OOP project is the representation of an object/instance.
-- ```tests``` directory will contain all unit tests.
-- ```console.py``` file is the entry point of our command interpreter.
-- ```models/base_model.py``` file is the base class of all our models. It contains common elements:
-    - attributes: ```id```, ```created_at``` and ```updated_at```
-    - methods: ```save()``` and ```to_json()```
-- ```models/engine``` directory will contain all storage classes (using the same prototype). For the moment I will have only one: ```file_storage.py```.
-​
-The project's implementation will happen in the following phases:
-## Phase One
-The first phase is to manipulate a powerful storage system to give an abstraction between objects and how they are stored and persisted. To achieve this, I will:
-- put in place a parent class (called ```BaseModel```) to take care of the initialization, serialization and deserialization of my future instances
-- create a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
-- create all classes used for AirBnB (```User, State, City, Place…```) that inherit from ```BaseModel```
-- create the first abstracted storage engine of the project: File storage.
-- create all unittests to validate all our classes and storage engine
-- Create a data model
-- Manage (create, update, destroy, etc) objects via a console/command interpreter
-- Store and persist objects to files (JSON files)
-S
-## Description of the command interpreter
-| Commands  | Description |
-| ------------- | ------------- |
-| ```quit```  | Quits the console  |
-| ```Ctrl+D```  | Quits the console  |
-| ```help``` or ```help <command>```  | Displays all commands or Displays instructions for a specific command
-| ```create <class>```  | Creates an object of type , saves it to a JSON file, and prints the objects ID
-| ```show <class> <ID>```  | Shows string representation of an object
-| ```destroy <class> <ID>```  | Deletes an objects
-| ```all or all <class>```  | Prints all string representations of all objects or Prints all string representations of all objects of a specific class
-| ```update <class> <id> <attribute name> "<attribute value>"```  | Updates an object with a certain attribute (new or existing)
-| ```<class>.all()```  | Same as all ```<class>```
-| ```<class>.count()```  | Retrieves the number of objects of a certain class
-| ```<class>.show(<ID>)```  | Same as show ```<class> <ID>```
-| ```<class>.destroy(<ID>)```  | Same as destroy ```<class> <ID>```
-| ```<class>.update(<ID>, <attribute name>, <attribute value>```  | Same as update ```<class> <ID> <attribute name> <attribute value>```
-| ```<class>.update(<ID>, <dictionary representation>)```  | Updates an objects based on a dictionary representation of attribute names and values
-​
-## General Execution
-Your shell should work like this in interactive mode:
+## Welcome to the AirBnB Clone project! 
+
+This meticulously crafted Python application replicates the core functionalities of the renowned AirBnB platform. Dive into this README to explore the architecture, usage, and advanced features of this project.
+
+### Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Implemented Classes](#implemented-classes)
+- [Console Commands](#console-commands)
+- [Advanced Features](#advanced-features)
+- [Contributing](#contributing)
+- [License](#license)
+
+### Installation
+
+Let's embark on this journey by setting up the project on your local machine. Follow these steps:
+
+1. **Clone the Repository**: Begin by cloning this repository to your local environment using Git:
 ```
-$ ./console.py
-(hbnb) help
-​
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb) 
-(hbnb) 
-(hbnb) quit
-$
-But also in non-interactive mode: (like the Shell project in C)
-​
-$ echo "help" | ./console.py
-(hbnb)
-​
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb) 
-$
-$ cat test_help
-help
-$
-$ cat test_help | ./console.py
-(hbnb)
-​
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb)
-$
+git clone https://github.com/your-username/AirBnB_clone.git
 ```
-# Authors:
-​
- * Ifeanyi Kalu [Github](https://github.com/fazzy12)
- * Ekene Odibe  [Github](https://github.com/drignet)
+2. **Navigate to Project Directory**: Access the project directory:
+```
+cd AirBnB_clone
+```
+3. **Run the Console Application**: Execute the console application to interact with the system:
+```
+./console.py
+```
+### Usage
+Our AirBnB Clone boasts a command-line interface (CLI) designed for effortless management of objects and data. The CLI enables you to interact with the application through various commands. Here's a quick overview of essential commands to kickstart your exploration:
+
+* `create <class_name>`: Create a new instance of the specified class.
+* `show <class_name> <id>`: Display details of a specific instance.
+* `all <class_name>`: List all instances of a particular class.
+* `update <class_name> <id> <attribute_name> "<new_value>"`: Update an attribute of an instance.
+* `destroy <class_name> <id>`: Delete an instance.
+
+For an in-depth look, please refer to the [Advanced Features](#advanced-features) section.
+
+### Project Structure
+To comprehend the inner workings of our `AirBnB Clone`, let's explore its structure:
+
+* `models/`: Houses Python class definitions for various objects.
+* `models/engine/`: Contains the FileStorage class responsible for data storage.
+* `tests/`: Home to unit tests ensuring the project's integrity.
+* `console.py`: The primary command-line interface for the application.
+
+## Implemented Classes
+Our `AirBnB Clone` project presents a range of classes that inherit from the `BaseModel` class. These classes include:
+
+* `User`: Represents a user entity, featuring attributes like email, password, first name, and last name.
+* `State`: Models a state entity, encapsulating a name attribute.
+* `City`: Represents a city entity, complete with name and state_id attributes referencing the State class.
+* `Amenity`: Encapsulates an amenity entity, characterized by a name attribute.
+* `Place`: Represents a place entity, incorporating attributes such as city_id, user_id, name, description, and more.
+* `Review`: Models a review entity with place_id, user_id, and text attributes.
+
+### Console Commands
+Unlock the full potential of our application with an array of console commands. Here are examples to guide you:
+
+* `create User`: Generate a new User instance.
+* `show User <user_id>`: Reveal details of a specific `User`.
+* `all User`: List all User instances.
+* `update User <user_id> email "new_email@example.com"`: Update a `User` instance's email.
+* `destroy User <user_id>`: Eradicate a `User` instance.
+
+For a comprehensive list of commands and detailed instructions, please visit the  [Usage](#usage) section.
+
+### Advanced Features
+Our `AirBnB Clone project` encompasses advanced features that enhance the user experience. These functionalities include:
+
+* Retrieving all instances of a class using `<class_name>.all()`.
+* Counting instances of a class using `<class_name>.count()`.
+* Showing an instance by ID using `<class_name>.show(<id>)`.
+* Destroying an instance by ID using `<class_name>.destroy(<id>)`.
+* Updating an instance using `<class_name>.update(<id>`, `<attribute_name>`, `<attribute_value>)`.
+* Updating an instance using a dictionary representation with `<class_name>.update(<id>`, `<dictionary>)`.
+
+These advanced features empower you to manage objects with unparalleled flexibility and efficiency.
+
+### Contributing
+We embrace contributions from the community! If you're eager to contribute, please follow these well-defined steps:
+
+* `Fork the Repository`: Begin by forking the repository to your GitHub account.
+* `Create a New Branch`: Establish a new `branch` for your feature or bug fix: `git checkout -b feature/new-feature`.
+* `Make Your Changes`: Implement your changes and `commit` them: `git commit -m "Add new feature`".
+* `Push Your Branch`: Push your branch to your GitHub repository: `git push origin feature/new-feature.`
+* `Submit a Pull Request`: Finally, submit a `pull request` detailing your changes.
+
+Please ensure that your code adheres to the project's coding style and conventions.
+
+License
+This project operates under the MIT License. Consult the LICENSE file for comprehensive license details.
