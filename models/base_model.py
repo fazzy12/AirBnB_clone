@@ -26,12 +26,8 @@ class BaseModel:
     def to_dict(self):
         """Return a dictionary containing all keys/values of
         __dict__ of the instance"""
-        class_name = self.__class__.__name__
-        return {
-            "__class__": class_name,
-            "id": self.id,
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
-            **self.__dict__,
-        }
-
+        model_dict = self.__dict__.copy()
+        model_dict['__class__'] = self.__class__.__name__
+        model_dict['created_at'] = self.created_at.isoformat()
+        model_dict['updated_at'] = self.updated_at.isoformat()
+        return model_dict
