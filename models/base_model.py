@@ -9,7 +9,7 @@ class BaseModel:
     """This class will be the “base” of all other classes in this project.
     The goal of it is to manage id attribute in all your future classes
     and to avoid duplicating the same code (by extension, same bugs)"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initialize the instance attributes
 
         Args:
@@ -22,9 +22,17 @@ class BaseModel:
             created_at (datetime): creation date of the instance
             updated_at (datetime): update date of the instance
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    setattr(self, key, datetime.strptime(value,
+                                                    '%Y-%m-%dT%H:%M:%S.%f'))
+                elif key != '__class__':
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Return a string representation of the instance
@@ -58,9 +66,18 @@ class BaseModel:
                 of the object in the format YYYY-MM-DDTHH:MM:SS.mmmmmm
                 - updated_at: string representing the date of update
                 of the object in the format YYYY-MM-DDTHH:MM:SS.mmmmmm
-        """
-        model_dict = self.__dict__.copy()
+                """
+        model_dict = {
+            'id': self.id,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat(),
+        }
+
+        # Check if attributes exist before adding them to the dictionary
+        if hasattr(self, 'name') and self.name is not None:
+            model_dict['name'] = self.name
+        if hasattr(self, 'my_number') and self.my_number is not None:
+            model_dict['my_number'] = self.my_number
+
         model_dict['__class__'] = self.__class__.__name__
-        model_dict['created_at'] = self.created_at.isoformat()
-        model_dict['updated_at'] = self.updated_at.isoformat()
         return model_dict
