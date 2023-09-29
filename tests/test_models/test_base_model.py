@@ -33,7 +33,15 @@ class TestBaseModel(unittest.TestCase):
         self.assertRegex(model_dict['created_at'], r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?$')
         self.assertRegex(model_dict['updated_at'], r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?$')
         self.assertIsInstance(model_dict['id'], str)
-        # Add more assertions for other keys as needed
+
+    def test_instance_equality(self):
+        my_model = BaseModel()
+        my_model_json = my_model.to_dict()
+        my_new_model = BaseModel(**my_model_json)
+        self.assertFalse(my_model is my_new_model)
+        self.assertEqual(my_model.id, my_new_model.id)
+        self.assertEqual(my_model.created_at, my_new_model.created_at)
+
 
 
 if __name__ == '__main__':
