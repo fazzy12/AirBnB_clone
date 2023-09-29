@@ -3,6 +3,7 @@
 
 import uuid
 from datetime import datetime
+import json
 
 class BaseModel:
     """This class will be the “base” of all other classes in this project.
