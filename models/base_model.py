@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 import json
 
+
 class BaseModel:
     """This class will be the “base” of all other classes in this project.
     The goal of it is to manage id attribute in all your future classes
@@ -24,11 +25,12 @@ class BaseModel:
         """
         from models import storage
 
+        date_format = '%Y-%m-%dT%H:%M:%S.%f'
+
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
-                    setattr(self, key, datetime.strptime(value,
-                                                    '%Y-%m-%dT%H:%M:%S.%f'))
+                    setattr(self, key, datetime.strptime(value, date_format))
                 elif key != '__class__':
                     setattr(self, key, value)
         else:
