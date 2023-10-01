@@ -2,7 +2,6 @@
 """This module contains the BaseModel class and its methods for the models"""
 
 import uuid
-from models import storage
 from datetime import datetime
 import json
 
@@ -24,6 +23,7 @@ class BaseModel:
             created_at (datetime): creation date of the instance
             updated_at (datetime): update date of the instance
         """
+        from models import storage
 
         if not kwargs:
             self.id = str(uuid.uuid4())
