@@ -54,7 +54,7 @@ class BaseModel:
         from models import storage
 
         self.updated_at = datetime.now()
-        storage.save()
+        storage.save(self)
 
     def to_dict(self):
         """Return a dictionary containing all keys/values of
