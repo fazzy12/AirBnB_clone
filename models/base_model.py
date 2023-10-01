@@ -1,25 +1,31 @@
-#!/usr/bin/python3
-"""
-A module that implements the BaseModel class
-"""
+#!/usr/bin/env python3
+"""This module contains the BaseModel class and its methods for the models"""
 
-from uuid import uuid4
+import uuid
 from datetime import datetime
 
 
 class BaseModel:
-    """
-    A class that defines all common attributes/methods for other classes
-    """
-
+    """This class will be the “base” of all other classes in this project.
+    The goal of it is to manage id attribute in all your future classes
+    and to avoid duplicating the same code (by extension, same bugs)"""
     def __init__(self, *args, **kwargs):
-        """
-        Initialize the BaseModel class
-        """
+        """Initialize the instance attributes
 
+        Args:
+            id (str): unique id of the instance
+            created_at (datetime): creation date of the instance
+            updated_at (datetime): update date of the instance
+
+        Attributes:
+            id (str): unique id of the instance
+            created_at (datetime): creation date of the instance
+            updated_at (datetime): update date of the instance
+        """
         from models import storage
+
         if not kwargs:
-            self.id = str(uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
             storage.new(self)
         else:
@@ -31,35 +37,52 @@ class BaseModel:
                         setattr(self, key, value)
 
     def __str__(self):
+        """Return a string representation of the instance
+
+        Returns:
+            str: string representation of the instance
         """
-        Returns the string representation of BaseModel object.
-        [<class name>] (<self.id>) <self.__dict__>
-        """
-        return "[{}] ({}) {}".format(type(self).__name__, self.id,
-                                     self.__dict__)
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
-        """
-        Updates 'self.updated_at' with the current datetime
+        """Update the public instance attribute updated_at with the current
+        datetime
+
+        Returns:
+            None
         """
         from models import storage
+
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """
-        returns a dictionary containing all keys/values of __dict__
-        of the instance:
+        """Return a dictionary containing all keys/values of
+        __dict__ of the instance
 
-        - only instance attributes set will be returned
-        - a key __class__ is added with the class name of the object
-        - created_at and updated_at must be converted to string object in ISO
-        object
-        """
-        dict_1 = self.__dict__.copy()
-        dict_1["__class__"] = self.__class__.__name__
-        for k, v in self.__dict__.items():
-            if k in ("created_at", "updated_at"):
-                v = self.__dict__[k].isoformat()
-                dict_1[k] = v
-        return dict_1
+        Returns:
+            dict: dictionary containing all keys/values of __dict__
+            of the instance
+
+        Notes:
+            The dictionary returned by to_dict() must contain:
+                - __class__: the class name of the object
+                - created_at: string representing the date of creation
+                of the object in the format YYYY-MM-DDTHH:MM:SS.mmmmmm
+                - updated_at: string representing the date of update
+                of the object in the format YYYY-MM-DDTHH:MM:SS.mmmmmm
+                """
+        model_dict = {
+            'id': self.id,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat(),
+        }
+
+        # Check if attributes exist before adding them to the dictionary
+        if hasattr(self, 'name') and self.name is not None:
+            model_dict['name'] = self.name
+        if hasattr(self, 'my_number') and self.my_number is not None:
+            model_dict['my_number'] = self.my_number
+
+        model_dict['__class__'] = self.__class__.__name__
+        return model_dict
