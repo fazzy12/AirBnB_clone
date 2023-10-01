@@ -53,8 +53,8 @@ class FileStorage:
             FileNotFoundError: if the JSON file doesn't exist
         """
         try:
-            with open(self.__file_path, encoding="utf-8") as f:
-                for obj in json.load(f).values():
+            with open(self.__file_path, encoding="utf-8") as file:
+                for obj in json.load(file).values():
                     self.new(eval(obj["__class__"])(**obj))
         except FileNotFoundError:
             return
