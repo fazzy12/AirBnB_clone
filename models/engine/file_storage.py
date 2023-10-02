@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """This module contains the FileStorage class and its methods for the models"""
 
+import os
 import json
 from models.base_model import BaseModel
 
@@ -52,9 +53,10 @@ class FileStorage:
         Raises:
             FileNotFoundError: if the JSON file doesn't exist
         """
-        try:
+        if os.path.exists(self.__file_path):
             with open(self.__file_path, encoding="utf-8") as file:
-                for obj in json.load(file).values():
-                    self.new(eval(obj["__class__"])(**obj))
-        except FileNotFoundError:
-            return
+                data = json.load(file)
+                for obj_data in data.values():
+                    class_name = obj_data["__class__"]
+                    if class_name in globals() and issubclass(globals()[class_name], BaseModel):
+                        self.new(globals()[class_name](**obj_data))
