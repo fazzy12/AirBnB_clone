@@ -3,6 +3,7 @@
 
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -53,8 +54,19 @@ class FileStorage:
             FileNotFoundError: if the JSON file doesn't exist
         """
         try:
-            with open(self.__file_path, encoding="utf-8") as f:
-                for obj in json.load(f).values():
-                    self.new(eval(obj["__class__"])(**obj))
+            with open(self.__file_path, encoding="utf-8") as file:
+                for obj_data in json.load(file).values():
+                    class_name = obj_data["__class__"]
+
+                    # Create instances based on class_name
+                    if class_name == "BaseModel":
+                        obj = BaseModel(**obj_data)
+                    elif class_name == "User":
+                        obj = User(**obj_data)
+                    else:
+                        # Handle other classes as needed
+                        continue
+
+                    self.new(obj)
         except FileNotFoundError:
             return
