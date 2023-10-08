@@ -24,7 +24,8 @@ class TestBaseModel(unittest.TestCase):
             pass
 
     def test_new_instance_has_id_created_at_updated_at(self):
-        """Test that a new instance has 'id', 'created_at', and 'updated_at' attributes."""
+        """Test that a new instance has 'id', 'created_at',
+        and 'updated_at' attributes."""
         bm = BaseModel()
         self.assertTrue(hasattr(bm, 'id'))
         self.assertTrue(hasattr(bm, 'created_at'))
@@ -36,7 +37,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(bm.id, str)
 
     def test_created_at_and_updated_at_are_datetimes(self):
-        """Test that 'created_at' and 'updated_at' attributes are instances of datetime."""
+        """Test that 'created_at' and 'updated_at' attributes
+        are instances of datetime."""
         bm = BaseModel()
         self.assertIsInstance(bm.created_at, datetime)
         self.assertIsInstance(bm.updated_at, datetime)
@@ -49,7 +51,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(initial_updated_at, bm.updated_at)
 
     def test_to_dict_returns_dict_with_expected_keys(self):
-        """Test that 'to_dict' method returns a dictionary with expected keys."""
+        """Test that 'to_dict' method returns a dictionary
+        with expected keys."""
         bm = BaseModel()
         bm_dict = bm.to_dict()
         expected_keys = ['id', 'created_at', 'updated_at', '__class__']
@@ -83,18 +86,19 @@ class TestBaseModel(unittest.TestCase):
         storage.reload()
         reloaded_objects = storage.all()
         self.assertEqual(initial_objects, reloaded_objects)
-        
+
     def test_str_representation(self):
         """Test the string representation of the object."""
         bm = BaseModel()
-        expected_str = f"[BaseModel] ({bm.id}) {{'id': '{bm.id}', 'created_at': {repr(bm.created_at)}, 'updated_at': {repr(bm.updated_at)}}}"
+        expected_str = f"[BaseModel] ({bm.id}) {{'id': '{bm.id}', \
+            'created_at': {repr(bm.created_at)},\
+            'updated_at': {repr(bm.updated_at)}}}"
 
         # Check if the expected substrings are present in the generated string
         self.assertIn(f"[BaseModel] ({bm.id})", str(bm))
         self.assertIn(f"'id': '{bm.id}'", str(bm))
         self.assertIn(f"'created_at': {repr(bm.created_at)}", str(bm))
         self.assertIn(f"'updated_at': {repr(bm.updated_at)}", str(bm))
-
 
 
 if __name__ == '__main__':
