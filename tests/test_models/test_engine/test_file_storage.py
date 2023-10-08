@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/ python3
 """Unittest for FileStorage class"""
 
 import unittest
@@ -6,7 +6,9 @@ import os
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
+
 class TestFileStorage(unittest.TestCase):
+    """Test cases for FileStorage class"""
     def setUp(self):
         self.file_path = "test_file.json"
         self.storage = FileStorage()
@@ -23,6 +25,7 @@ class TestFileStorage(unittest.TestCase):
         all_objects = self.storage.all()
 
     def test_new_and_all(self):
+        """Test that new() adds an object to the storage dictionary"""
         self.storage.new(self.base_model)
         all_objects = self.storage.all()
         key = "BaseModel.{}".format(self.base_model.id)
@@ -30,6 +33,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(all_objects[key], self.base_model)
 
     def test_save_and_reload(self):
+        """Test that save() serializes objects to the JSON file"""
         self.storage.new(self.base_model)
         self.storage.save()
 
@@ -46,6 +50,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(reloaded_model.id, self.base_model.id)
         self.assertEqual(reloaded_model.name, self.base_model.name)
         self.assertEqual(reloaded_model.my_number, self.base_model.my_number)
+
 
 if __name__ == '__main__':
     unittest.main()
