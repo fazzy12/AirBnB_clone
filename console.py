@@ -100,22 +100,22 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all string representation of all instances"""
         args = arg.split()
-        if args and args[0] not in {"BaseModel",
-                                    "User",
-                                    "State",
-                                    "City",
-                                    "Amenity",
-                                    "Place",
-                                    "Review"}:
+        if not args:
+            print("** class name missing **")
+            return
+        class_name = args[0]
+        if class_name not in {"BaseModel",
+                            "User",
+                            "State",
+                            "City",
+                            "Amenity",
+                            "Place",
+                            "Review"}:
             print("** class doesn't exist **")
             return
 
-        if not args:
-            print([str(value) for value in storage.all().values()])
-        else:
-            class_name = args[0]
-            print([str(value) for key, value in storage.all().items()
-                   if key.startswith(class_name + ".")])
+        instances = eval(f"{class_name}.all()")
+        print([str(instance) for instance in instances])
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
