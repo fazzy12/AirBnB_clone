@@ -114,8 +114,17 @@ class HBNBCommand(cmd.Cmd):
             print([str(value) for value in storage.all().values()])
         else:
             class_name = args[0]
-            print([str(value) for key, value in storage.all().items()
-                   if key.startswith(class_name + ".")])
+            if class_name not in {"BaseModel",
+                                  "User",
+                                  "State",
+                                  "City",
+                                  "Amenity",
+                                  "Place",
+                                  "Review"}:
+                print("** class doesn't exist **")
+                return
+            print([str(value) for value in globals()[class_name].all()])
+
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
