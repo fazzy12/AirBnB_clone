@@ -1,8 +1,13 @@
-#!/usr/bin/python3
-"""Contains the Amenity model"""
+#!/usr/bin/env python3
+"""This module contains the Amenity class"""
+
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """Implements the Amenity model"""
+    """Amenity class that inherits from BaseModel
+
+    Attributes:
+        name (str): amenity's name
+    """
     name = ""

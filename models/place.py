@@ -1,6 +1,9 @@
-#!/usr/bin/python3
-"""Contains the Place model"""
+#!/usr/bin/env python3
+"""This module contains the Place class"""
+
+
 from models.base_model import BaseModel
+from models.place import Place
 
 
 class Place(BaseModel):
