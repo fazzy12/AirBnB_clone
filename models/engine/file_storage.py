@@ -4,6 +4,11 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -63,6 +68,16 @@ class FileStorage:
                         obj = BaseModel(**obj_data)
                     elif class_name == "User":
                         obj = User(**obj_data)
+                    elif class_name == "State":
+                        obj = State(**obj_data)
+                    elif class_name == "City":
+                        obj = City(**obj_data)
+                    elif class_name == "Amenity":
+                        obj = Amenity(**obj_data)
+                    elif class_name == "Place":
+                        obj = Place(**obj_data)
+                    elif class_name == "Review":
+                        obj = Review(**obj_data)
                     else:
                         # Handle other classes as needed
                         continue
