@@ -1,0 +1,14 @@
+/**
+ * This CSS file contains styles for the footer section of the AirBnB clone website.
+ */
+
+footer {
+    background-color: #00FF00;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+}
