@@ -1,0 +1,28 @@
+/**
+ * This CSS file contains styles for applying filters to elements on the web page.
+ */
+.locations,
+.amenities {
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+}
+
+.locations {
+    border-right: 1px solid #DDDDDD;
+}
+
+.locations h3,
+.amenities h3  {
+    font-weight: 600;
+    margin-bottom: 0%;
+    padding-left: 30px;
+}
+
+.locations h4,
+.amenities h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 4px auto;
+    padding-left: 30px;
+}
