@@ -1,0 +1,16 @@
+/* This CSS file contains styles for the header section of the AirBnB clone website. */
+header {
+    color: white;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.logo {
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 136px;
+    height: 60px;
+    left: 20px;
+}
