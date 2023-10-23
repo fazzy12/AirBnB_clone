@@ -15,7 +15,6 @@
 .locations h3,
 .amenities h3  {
     font-weight: 600;
-    margin-bottom: 0%;
     padding-left: 30px;
 }
 
@@ -30,14 +29,20 @@
 /*
  * === Filters class style ===
  */
-
+.filters .locations,
+.filters .amenities {
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    width: 25%;
+}
 /* Filters style */
 .filters {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
     display: inline-block;
-    height: 100px;
+    height: 60px;
     width: 100%;
 }
 
@@ -50,7 +55,7 @@
     float: right;
     font-size: 18px;
     height: 48px;
-    margin: 12px 30px;
+    margin: 5px 30px;
     width: 20%;
 }
 
@@ -64,8 +69,8 @@
 .filters .amenities {
     display: inline-block;
     height: 100%;
-    position: relative;
     width: 25%;
+    position: relative;
 }
 
   /* Locations border */
@@ -87,7 +92,7 @@
     display: none;
     position: absolute;
     width: 100%;
-    margin-top: -20px;
+    /* margin-top: -20px; */
 }
 
   /* Locations and amenities popover hover */
@@ -149,6 +154,7 @@
     font-weight: 600;
     height: 50%;
     padding: 15.5px 0 0 30px;
+    margin-top: -1px;
 }
 
   /* Header 4 style */
