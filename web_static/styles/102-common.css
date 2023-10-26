@@ -1,0 +1,17 @@
+/* Default styles for all screen sizes */
+
+/* Small screens (phones) */
+@media only screen and (max-width: 600px) {
+    /* Add styles specific to small screens here */
+}
+
+  /* Medium screens (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    /* Add styles specific to medium screens here */
+}
+
+  /* Large screens (desktops) */
+@media only screen and (min-width: 1025px) {
+    /* Add styles specific to large screens here */
+    
+}
