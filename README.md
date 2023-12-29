@@ -3,7 +3,9 @@
     <img src="image1.jpg" alt="Image 1" width="400" height="300" />
     <img src="image2.jpg" alt="Image 2" width="400" height="300" />
 </div>
+
 # AirBnB Clone
+
 ## Welcome to the AirBnB Clone project! 
 
 This meticulously crafted Python application replicates the core functionalities of the renowned AirBnB platform. Dive into this README to explore the architecture, usage, and advanced features of this project.
